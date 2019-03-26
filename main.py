@@ -27,6 +27,15 @@ def main():
     setproctitle.setproctitle("Train/Test Manager")
     args = flag_parser.parse_arguments()
 
+    if args.model == "BaseModel" or args.model == "GCN":
+        args.learned_loss = False
+        args.num_steps = 50
+        target = nonadaptivea3c_val if args.eval else nonadaptivea3c_train
+    else:
+        args.learned_loss = True
+        args.num_steps = 6
+        target = savn_val if args.eval else savn_train
+
     create_shared_model = model_class(args.model)
     init_agent = agent_class(args.agent_type)
     optimizer_type = optimizer_class(args.optimizer)
@@ -78,14 +87,6 @@ def main():
     end_flag = mp.Value(ctypes.c_bool, False)
 
     train_res_queue = mp.Queue()
-    if args.model == "BaseModel" or args.model == "GCN":
-        args.learned_loss = False
-        args.num_steps = 50
-        target = nonadaptivea3c_val if args.eval else nonadaptivea3c_train
-    else:
-        args.learned_loss = True
-        args.num_steps = 6
-        target = savn_val if args.eval else savn_train
 
     for rank in range(0, args.workers):
         p = mp.Process(

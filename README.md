@@ -60,10 +60,10 @@ Use the following code to run the pretrained models on the test set. Add the arg
 #### SAVN
 ```bash
 python main.py --eval \
-    --test_or_val test \ 
+    --test_or_val test \
     --episode_type TestValEpisode \
-    --load_model pretrained_models/savn_pretrained.dat \ 
-    --model SAVN \ 
+    --load_model pretrained_models/savn_pretrained.dat \
+    --model SAVN \
     --results_json savn_test.json 
 
 cat savn_test.json 
@@ -73,11 +73,11 @@ cat savn_test.json
 ```bash
 python main.py --eval \
     --test_or_val test \
-    --episode_type TestValEpisode \ 
-    --load_model pretrained_models/gcn_pretrained.dat \ 
-    --model GCN \ 
-    --glove_dir ./data/gcn \ 
-    --results_json scene_priors_test.json 
+    --episode_type TestValEpisode \
+    --load_model pretrained_models/gcn_pretrained.dat \
+    --model GCN \
+    --glove_dir ./data/gcn \
+    --results_json scene_priors_test.json
 
 cat scene_priors_test.json 
 ```
@@ -86,9 +86,9 @@ cat scene_priors_test.json
 #### Non-Adaptvie-A3C
 ```bash
 python main.py --eval \
-    --test_or_val test \ 
-    --episode_type TestValEpisode \ 
-    --load_model pretrained_models/nonadaptivea3c_pretrained.dat \ 
+    --test_or_val test \
+    --episode_type TestValEpisode \
+    --load_model pretrained_models/nonadaptivea3c_pretrained.dat \
     --results_json nonadaptivea3c_test.json
 
 cat nonadaptivea3c_test.json
@@ -112,7 +112,7 @@ python main.py \
 ```bash
 python main.py \
     --title nonadaptivea3c_train \
-    --gpu-ids 0 1 \ 
+    --gpu-ids 0 1 \
     --workers 12
 ```
 
