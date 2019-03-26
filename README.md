@@ -5,15 +5,13 @@ By Mitchell Wortsman, Kiana Ehsani, Mohammad Rastegari, Ali Farhadi and Roozbeh 
 
 [CVPR 2019 Paper ](https://arxiv.org/abs/1812.00971) | [Video](https://www.youtube.com/watch?v=-Ba6ZRMcxEE&feature=youtu.be) | [BibTex](#citing)
 
-Intution            |  Examples
+Intuition            |  Examples
 :-------------------------:|:-------------------------:
 ![](figs/abstract_figure.jpg)  |  ![](figs/qualitative.jpg)
 
 
-## Intuition / Informal Abstract
-
 There is a lot to learn about a task by actually attempting it! Learning is continuous, i.e. we learn as we perform.
-Traditional navigation approaches freeze the model during inference (top row in the intution figure above). 
+Traditional navigation approaches freeze the model during inference (top row in the intuition figure above). 
 In  this  paper,  we  propose a self-addaptive agent for visual navigation that learns via self-supervised
 interaction with the environment (bottom row in the intuition figure above).
 
