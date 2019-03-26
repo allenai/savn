@@ -40,7 +40,7 @@ If you find this project useful in your research, please consider citing:
 | [Non-Adaptive A3C](#Non-Adaptvie-A3C)  | 14.68  &pm; 1.8 | 33.04  &pm; 3.5 | 11.69  &pm; 1.9 | 21.44  &pm; 3.0 |
 
 
-## Setup.
+## Setup
 
 - Clone the repository with `git clone https://github.com/allenai/savn.git && cd savn`.
 
