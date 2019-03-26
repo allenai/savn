@@ -117,7 +117,7 @@ python main.py \
 ```
 
 
-## How to Test Your Own SAVN
+## How to Evaluate your Trained Model
 
 You may use the following commands for evaluating models you have trained.
 
