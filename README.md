@@ -36,6 +36,7 @@ If you find this project useful in your research, please consider citing:
 | Model  | SPL  &geq; 1 | Success  &geq; 1 | SPL   &geq; 5 | Success  &geq; 5 |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | 
 | [SAVN](#SAVN)  |  16.15  &pm; 0.5 | 40.86  &pm; 1.2 | 13.91  &pm; 0.5 | 28.70  &pm; 1.5 |
+| [Scene Priors](https://arxiv.org/abs/1810.06543)  | 15.47  &pm; 1.1 | 35.13  &pm; 1.3 | 11.37  &pm; 1.6 | 22.25  &pm; 2.7 |
 | [Non-Adaptive A3C](#Non-Adaptvie-A3C)  | 14.68  &pm; 1.8 | 33.04  &pm; 3.5 | 11.69  &pm; 1.9 | 21.44  &pm; 3.0 |
 
 
@@ -45,16 +46,11 @@ If you find this project useful in your research, please consider citing:
 
 - Install the necessary packages. If you are using pip then simply run `pip install -r requirements.txt`.
 
-- Download [beaker](https://github.com/allenai/beaker) to obtain the data and pretrained models. OS X users may simply download with
+- Download the [pretrained models](https://beaker.org/api/v3/datasets/ds_g1e2x8n1gwwf/files/pretrained_models.tar.gz) and
+[data](https://beaker.org/api/v3/datasets/ds_i25b32ktzvh8/files/data.tar.gz) to the `savn` directory. Untar with
 ```bash
-brew tap allenai/homebrew-beaker https://github.com/allenai/homebrew-beaker.git
-brew install beaker
-``` 
-
-- Get the data and pretrained models with
-```bash
-./get_data.sh
-./get_pretrained_models.sh
+tar -xzf pretrained_models.tar.gz
+tar -xzf data.tar.gz
 ```
 
 ## Evaluation using Pretrained Models
@@ -64,22 +60,36 @@ Use the following code to run the pretrained models on the test set. Add the arg
 #### SAVN
 ```bash
 python main.py --eval \
-    --test_or_val test \ # Using the test or val set.
-    --episode_type TestValEpisode \ # Use a saved episode in test or validation set.
-    --load_model pretrained_models/savn_pretrained.dat \ # Load a pretrained model.
-    --model SAVN \ # Use SAVN instead of the default base model.
-    --results_json savn_test.json # Where to save the results.
+    --test_or_val test \ 
+    --episode_type TestValEpisode \
+    --load_model pretrained_models/savn_pretrained.dat \ 
+    --model SAVN \ 
+    --results_json savn_test.json 
 
-cat savn_test.json # View the results.
+cat savn_test.json 
 ```
+
+#### Scene Priors
+```bash
+python main.py --eval \
+    --test_or_val test \
+    --episode_type TestValEpisode \ 
+    --load_model pretrained_models/gcn_pretrained.dat \ 
+    --model GCN \ 
+    --glove_dir ./data/gcn \ 
+    --results_json scene_priors_test.json 
+
+cat scene_priors_test.json 
+```
+
 
 #### Non-Adaptvie-A3C
 ```bash
 python main.py --eval \
-    --test_or_val test \ # Using the test or val set.
-    --episode_type TestValEpisode \ # Use a saved episode in test or validation set.
-    --load_model pretrained_models/nonadaptivea3c_pretrained.dat \ # Load a pretrained model.
-    --results_json nonadaptivea3c_test.json # Where to save the results.
+    --test_or_val test \ 
+    --episode_type TestValEpisode \ 
+    --load_model pretrained_models/nonadaptivea3c_pretrained.dat \ 
+    --results_json nonadaptivea3c_test.json
 
 cat nonadaptivea3c_test.json
 ```
@@ -91,19 +101,19 @@ You may train your own models by using the commands below.
 ### Training SAVN
 ```bash
 python main.py \
-    --title savn_train \ # Title used in the logs.
-    --model SAVN \ # Use SAVN instead of the default base model.
-    --gpu-ids 0 1 \  # Indicate which GPUs to use.
-    --workers 12 # How many agents to train with.
+    --title savn_train \
+    --model SAVN \
+    --gpu-ids 0 1 \
+    --workers 12
 ```
 
 
 ## Training Non-Adaptvie A3C
 ```bash
 python main.py \
-    --title nonadaptivea3c_train \ # Title used in the logs.
-    --gpu-ids 0 1 \  # Indicate which GPUs to use.
-    --workers 12 # How many agents to train with.
+    --title nonadaptivea3c_train \
+    --gpu-ids 0 1 \ 
+    --workers 12
 ```
 
 

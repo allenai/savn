@@ -35,7 +35,7 @@ def main_eval(args, create_shared_model, init_agent):
     processes = []
 
     res_queue = mp.Queue()
-    if args.model == "BaseModel":
+    if args.model == "BaseModel" or args.model == "GCN":
         args.learned_loss = False
         args.num_steps = 50
         target = nonadaptivea3c_val

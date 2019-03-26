@@ -78,7 +78,7 @@ def main():
     end_flag = mp.Value(ctypes.c_bool, False)
 
     train_res_queue = mp.Queue()
-    if args.model == "BaseModel":
+    if args.model == "BaseModel" or args.model == "GCN":
         args.learned_loss = False
         args.num_steps = 50
         target = nonadaptivea3c_val if args.eval else nonadaptivea3c_train
