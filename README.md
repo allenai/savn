@@ -98,7 +98,7 @@ cat nonadaptivea3c_test.json
 
 You may train your own models by using the commands below.
 
-### Training SAVN
+#### Training SAVN
 ```bash
 python main.py \
     --title savn_train \
@@ -108,7 +108,7 @@ python main.py \
 ```
 
 
-## Training Non-Adaptvie A3C
+#### Training Non-Adaptvie A3C
 ```bash
 python main.py \
     --title nonadaptivea3c_train \
