@@ -10,10 +10,12 @@ Intution            |  Examples
 ![](figs/abstract_figure.jpg)  |  ![](figs/qualitative.jpg)
 
 
-## Informal Abstract
+## Intuition / Informal Abstract
 
 There is a lot to learn about a task by actually attempting it! Learning is continuous, i.e. we learn as we perform.
-We propose a self-adaptive visual navigation (SAVN) agent that learns via self-supervised interaction with an environment.
+Traditional navigation approaches freeze the model during inference (top row in the intution figure above). 
+In  this  paper,  we  propose a self-addaptive agent for visual navigation that learns via self-supervised
+interaction with the environment (bottom row in the intuition figure above).
 
 
 ## Citing
@@ -21,12 +23,12 @@ We propose a self-adaptive visual navigation (SAVN) agent that learns via self-s
 If you find this project useful in your research, please consider citing:
 
 ```
-@article{savn2018,
-  title={Learning to Learn How to Learn: Self-Adaptive Visual Navigation Using Meta-Learning},
+@InProceedings{Wortsman_2019_CVPR,
   author={Mitchell Wortsman and Kiana Ehsani and Mohammad Rastegari and Ali Farhadi and Roozbeh Mottaghi},
-  journal={CoRR},
-  year={2018},
-  volume={abs/1812.00971}
+  title={Learning to Learn How to Learn: Self-Adaptive Visual Navigation Using Meta-Learning},
+  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month = {June},
+  year = {2019}
 }
 ```
 
@@ -61,28 +63,25 @@ brew install beaker
 
 Use the following code to run the pretrained models on the test set. Add the argument `--gpu-ids 0 1` to speed up the evaluation by using GPUs.
 
-## SAVN
+#### SAVN
 ```bash
-python main.py \
-    --eval \
-    --test_or_val test \
-    --episode_type TestValEpisode \
-    --load_model pretrained_models/savn_pretrained.dat \
-    --title nonadaptivea3c_test \
-    --results_json savn_test.json
+python main.py --eval \
+    --test_or_val test \ # Using the test or val set.
+    --episode_type TestValEpisode \ # Use a saved episode in test or validation set.
+    --load_model pretrained_models/savn_pretrained.dat \ # Load a pretrained model.
+    --model SAVN \ # Use SAVN instead of the default base model.
+    --results_json savn_test.json # Where to save the results.
 
-cat savn_test.json
+cat savn_test.json # View the results.
 ```
 
-## Non-Adaptvie-A3C
+#### Non-Adaptvie-A3C
 ```bash
-python main.py \
-    --eval \
-    --test_or_val test \
-    --episode_type TestValEpisode \
-    --load_model pretrained_models/nonadaptivea3c_pretrained.dat \
-    --title nonadaptivea3c_test \
-    --results_json nonadaptivea3c_test.json
+python main.py --eval \
+    --test_or_val test \ # Using the test or val set.
+    --episode_type TestValEpisode \ # Use a saved episode in test or validation set.
+    --load_model pretrained_models/nonadaptivea3c_pretrained.dat \ # Load a pretrained model.
+    --results_json nonadaptivea3c_test.json # Where to save the results.
 
 cat nonadaptivea3c_test.json
 ```
@@ -94,19 +93,19 @@ You may train your own models by using the commands below.
 ### Training SAVN
 ```bash
 python main.py \
-    --title savn_train \
-    --model SAVN \
-    --gpu-ids 0 1 \
-    --workers 12
+    --title savn_train \ # Title used in the logs.
+    --model SAVN \ # Use SAVN instead of the default base model.
+    --gpu-ids 0 1 \  # Indicate which GPUs to use.
+    --workers 12 # How many agents to train with.
 ```
 
 
 ## Training Non-Adaptvie A3C
 ```bash
 python main.py \
-    --title nonadaptivea3c_train \
-    --gpu-ids 0 1 \
-    --workers 12
+    --title nonadaptivea3c_train \ # Title used in the logs.
+    --gpu-ids 0 1 \  # Indicate which GPUs to use.
+    --workers 12 # How many agents to train with.
 ```
 
 
