@@ -9,7 +9,6 @@ Intuition            |  Examples
 :-------------------------:|:-------------------------:
 ![](figs/abstract_figure.jpg)  |  ![](figs/qualitative.jpg)
 
-
 There is a lot to learn about a task by actually attempting it! Learning is continuous, i.e. we learn as we perform.
 Traditional navigation approaches freeze the model during inference (top row in the intuition figure above). 
 In  this  paper,  we  propose a self-addaptive agent for visual navigation that learns via self-supervised
@@ -34,7 +33,7 @@ If you find this project useful in your research, please consider citing:
 
 
 | Model  | SPL  &geq; 1 | Success  &geq; 1 | SPL   &geq; 5 | Success  &geq; 5 |
-| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | 
+| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
 | [SAVN](#SAVN)  |  16.15  &pm; 0.5 | 40.86  &pm; 1.2 | 13.91  &pm; 0.5 | 28.70  &pm; 1.5 |
 | [Scene Priors](https://arxiv.org/abs/1810.06543)  | 15.47  &pm; 1.1 | 35.13  &pm; 1.3 | 11.37  &pm; 1.6 | 22.25  &pm; 2.7 |
 | [Non-Adaptive A3C](#Non-Adaptvie-A3C)  | 14.68  &pm; 1.8 | 33.04  &pm; 3.5 | 11.69  &pm; 1.9 | 21.44  &pm; 3.0 |
@@ -52,6 +51,14 @@ If you find this project useful in your research, please consider citing:
 tar -xzf pretrained_models.tar.gz
 tar -xzf data.tar.gz
 ```
+
+The `data` folder contains:
+
+- `thor_offline_data` which is organized into sub-folders, each of which corresponds to a scene in [AI2-THOR](https://ai2thor.allenai.org/). For each room we have scraped the [ResNet](https://arxiv.org/abs/1512.03385) features of all possible locations in addition to a metadata and [NetworkX](https://networkx.github.io/) graph of possible navigations in the scene.
+- `thor_glove` which contains the [GloVe](https://nlp.stanford.edu/projects/glove/) embeddings for the navigation targets.
+- `gcn` which contains the necessary data for the [Graph Convolutional Network (GCN)](https://arxiv.org/abs/1609.02907) in [Scene Priors](https://arxiv.org/abs/1810.06543), including the adjacency matrix.
+
+Note that the starting positions and scenes for the test and validation set may be found in `test_val_split`.
 
 ## Evaluation using Pretrained Models
 
@@ -93,6 +100,21 @@ python main.py --eval \
 
 cat nonadaptivea3c_test.json
 ```
+
+The result may vary depending on system and set-up though we obtain:
+
+| Model  | SPL  &geq; 1 | Success  &geq; 1 | SPL   &geq; 5 | Success  &geq; 5 |
+| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| [SAVN](#SAVN)  |  16.13 | 42.20 | 14.30 | 30.09 |
+| [Scene Priors](https://arxiv.org/abs/1810.06543)  |  14.86 | 36.90 | 11.49 | 24.70 |
+| [Non-Adaptive A3C](#Non-Adaptvie-A3C)  | 14.10 | 32.40 | 10.73 | 19.16 |
+
+The results in the [initial submission](https://arxiv.org/abs/1812.00971v1) (shown below) were the best (in terms of success on the validation set). After the initial submission, we trained the model 5 times from scratch to obtain error bars, which you may find in [results](#results).
+
+| Model  | SPL  &geq; 1 | Success  &geq; 1 | SPL   &geq; 5 | Success  &geq; 5 |
+| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| [SAVN](#SAVN)  |  16.13 | 42.10 | 13.19 | 30.54 |
+| [Non-Adaptive A3C](#Non-Adaptvie-A3C)  | 13.73 | 32.90 | 10.88 | 20.66 |
 
 ## How to Train your SAVN
 
