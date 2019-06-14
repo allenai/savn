@@ -45,8 +45,8 @@ If you find this project useful in your research, please consider citing:
 
 - Install the necessary packages. If you are using pip then simply run `pip install -r requirements.txt`.
 
-- Download the [pretrained models](https://beaker.org/api/v3/datasets/ds_g1e2x8n1gwwf/files/pretrained_models.tar.gz) and
-[data](https://beaker.org/api/v3/datasets/ds_i25b32ktzvh8/files/data.tar.gz) to the `savn` directory. Untar with
+- Download the [pretrained models](https://prior-datasets.s3.us-east-2.amazonaws.com/savn/pretrained_models.tar.gz) and
+[data](https://prior-datasets.s3.us-east-2.amazonaws.com/savn/data.tar.gz) to the `savn` directory. Untar with
 ```bash
 tar -xzf pretrained_models.tar.gz
 tar -xzf data.tar.gz
