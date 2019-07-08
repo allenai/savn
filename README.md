@@ -60,6 +60,9 @@ The `data` folder contains:
 
 Note that the starting positions and scenes for the test and validation set may be found in `test_val_split`.
 
+If you wish to access the RGB images in addition to the ResNet features, replace `thor_offline_data` with [thor_offlline_data_with_images](https://prior-datasets.s3.us-east-2.amazonaws.com/savn/offline_data_with_images.tar.gz). If you wish to run your model on the image files,
+add the command line argument `--images_file_name images.hdf5`. 
+
 ## Evaluation using Pretrained Models
 
 Use the following code to run the pretrained models on the test set. Add the argument `--gpu-ids 0 1` to speed up the evaluation by using GPUs.
