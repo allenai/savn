@@ -13,7 +13,7 @@ networkx==2.2
 numpy==1.16.2
 Pillow==5.4.1
 progressbar2==3.39.3
-protobuf==3.7.0
+protobuf==5.29.6
 python-utils==2.3.0
 PyYAML==5.1
 requests==2.21.0
